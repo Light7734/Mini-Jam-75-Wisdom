@@ -9,7 +9,7 @@ A game for a game jam that's hosted by ZahranW, ManuGamesDev, KingW · #minijam
 ## Built-With
 * [Unity Engine](https://unity.com/) - The game engine
 * [Visual Studio](https://visualstudio.microsoft.com/) - The Integrated development environment
-* [Aseprite](https://www.aseprite.org/) - The pixel creating and sprite editing tool
+* [Aseprite](https://www.aseprite.org/) - The pixel art and sprite editing tool
 * [Logic Pro X](https://www.apple.com/ae/logic-pro/) - The digital audio workstation
 
 ## Installing
