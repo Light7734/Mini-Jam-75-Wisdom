@@ -3,7 +3,7 @@ A game for a game jam that's hosted by ZahranW, ManuGamesDev, KingW · #minijam
 
 ## Contributors
 * [Light](https://twitter.com/T3amJoy) - Art &amp; Code
-* Jarry Allen - Art &amp; Code
+* [Jarry Allen](https://twitter.com/TomWalat) - Art &amp; Code
 * [musicbycamo](https://www.instagram.com/musicbycamo/) - Music
 
 ## Built-With
