@@ -1,5 +1,5 @@
 # Mini-Jam-75-Wisdom
-A game for a game jam that's hosted by ZahranW, ManuGamesDev, KingW · #minijam
+A game for a [game jam](https://itch.io/jam/mini-jam-75-wisdom) that's hosted by ZahranW, ManuGamesDev, KingW · #minijam
 
 ## Contributors
 * [Light](https://twitter.com/T3amJoy) - Art &amp; Code
