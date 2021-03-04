@@ -2,9 +2,9 @@
 A game for a game jam that's hosted by ZahranW, ManuGamesDev, KingW · #minijam
 
 ## Contributors
-* Light - Art &amp; Code
+* [Light](https://twitter.com/T3amJoy) - Art &amp; Code
 * Jarry Allen - Art &amp; Code
-* musicbycamo - Music
+* [musicbycamo](https://www.instagram.com/musicbycamo/) - Music
 
 ## Built-With
 * [Unity Engine](https://unity.com/) - The game engine
