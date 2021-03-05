@@ -151,15 +151,15 @@ RectTransform:
   m_GameObject: {fileID: 203100229}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2, y: 2, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1569674755}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 42, y: 42}
-  m_SizeDelta: {x: 33, y: 16}
+  m_AnchoredPosition: {x: 48, y: 38.399998}
+  m_SizeDelta: {x: 64, y: 35}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &203100231
 MonoBehaviour:
@@ -340,15 +340,15 @@ RectTransform:
   m_GameObject: {fileID: 492481291}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2, y: 2, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1569674755}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 42, y: 0}
-  m_SizeDelta: {x: 33, y: 16}
+  m_AnchoredPosition: {x: 48, y: -0.6}
+  m_SizeDelta: {x: 64, y: 35}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &492481293
 MonoBehaviour:
@@ -599,7 +599,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &596291363
 RectTransform:
   m_ObjectHideFlags: 0
@@ -759,10 +759,10 @@ RectTransform:
   m_Father: {fileID: 1569674755}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 256, y: 144}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1163120042
 MonoBehaviour:
@@ -783,7 +783,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 2cd241da6d99d624f8fc72a91078e1ea, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -818,7 +818,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1210445929
 RectTransform:
   m_ObjectHideFlags: 0
@@ -892,7 +892,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1423380207
 RectTransform:
   m_ObjectHideFlags: 0
@@ -959,7 +959,7 @@ PrefabInstance:
     - target: {fileID: 857376992280930914, guid: 9304037b103e8b144a8243073bd8b4ee,
         type: 3}
       propertyPath: m_Alpha
-      value: 1
+      value: 0.03
       objectReference: {fileID: 0}
     - target: {fileID: 4894462803701088836, guid: 9304037b103e8b144a8243073bd8b4ee,
         type: 3}
@@ -1100,6 +1100,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: SceneLoader
+      objectReference: {fileID: 0}
+    - target: {fileID: 8660314196636546503, guid: 9304037b103e8b144a8243073bd8b4ee,
+        type: 3}
+      propertyPath: m_MatchWidthOrHeight
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8660314196636546503, guid: 9304037b103e8b144a8243073bd8b4ee,
         type: 3}
@@ -1311,15 +1316,15 @@ RectTransform:
   m_GameObject: {fileID: 1948384748}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2, y: 2, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1569674755}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 42, y: -42}
-  m_SizeDelta: {x: 33, y: 16}
+  m_AnchoredPosition: {x: 48, y: -39.600002}
+  m_SizeDelta: {x: 64, y: 35}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1948384750
 MonoBehaviour:
@@ -1469,7 +1474,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   btn: {fileID: 1948384750}
   normal: {fileID: 21300000, guid: 7836aeb9e01d56a4bbbd9c9d3d274ab8, type: 3}
-  pressed: {fileID: 21300000, guid: b7e293dc1f0c9d74796025a03b30b7b8, type: 3}
+  pressed: {fileID: 21300000, guid: 98b80b804832cf04c8696222b35fc2ea, type: 3}
 --- !u!1 &2004762898
 GameObject:
   m_ObjectHideFlags: 0
