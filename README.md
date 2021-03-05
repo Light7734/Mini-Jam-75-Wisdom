@@ -1,15 +1,15 @@
 # Mini-Jam-75-Wisdom
-A game for a game jam that's hosted by ZahranW, ManuGamesDev, KingW · #minijam
+A game for a [game jam](https://itch.io/jam/mini-jam-75-wisdom) that's hosted by ZahranW, ManuGamesDev, KingW · #minijam
 
 ## Contributors
 * [Light](https://twitter.com/T3amJoy) - Art &amp; Code
-* Jarry Allen - Art &amp; Code
+* [Jarry Allen](https://twitter.com/TomWalat) - Art &amp; Code
 * [musicbycamo](https://www.instagram.com/musicbycamo/) - Music
 
 ## Built-With
 * [Unity Engine](https://unity.com/) - The game engine
 * [Visual Studio](https://visualstudio.microsoft.com/) - The Integrated development environment
-* [Aseprite](https://www.aseprite.org/) - The pixel creating and sprite editing tool
+* [Aseprite](https://www.aseprite.org/) - The pixel art and sprite editing tool
 * [Logic Pro X](https://www.apple.com/ae/logic-pro/) - The digital audio workstation
 
 ## Installing
