@@ -10,6 +10,8 @@ public class StartMenu : MonoBehaviour
     [SerializeField] private Button playBtn, prefBtn, quitBtn;
     [SerializeField] private Sprite playBtnNormal, playBtnPress, prefBtnNormal, prefBtnPress, quitBtnNormal, quitBtnPress;
     [SerializeField] private SceneLoader sceneLoader;
+    [SerializeField] private GameObject mainMenuGameObject, settingsGameObject;
+
 
     public void Start()
     {
@@ -27,13 +29,21 @@ public class StartMenu : MonoBehaviour
     public void PrefBtnPressed()
     {
         SoundManager.i.PlaySound(SoundManager.Sound.BtnClick);
-        Debug.Log("!!");
+        mainMenuGameObject.SetActive(false);
+        settingsGameObject.SetActive(true);
     }
 
     public void QuitBtnPressed()
     {
         SoundManager.i.PlaySound(SoundManager.Sound.BtnClick);
         Application.Quit();
+    }
+
+    public void BackBtnPressed()
+    {
+        SoundManager.i.PlaySound(SoundManager.Sound.BtnClick);
+        mainMenuGameObject.SetActive(true);
+        settingsGameObject.SetActive(false);
     }
 
     #region VISUALS

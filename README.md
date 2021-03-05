@@ -5,6 +5,7 @@ A game for a [game jam](https://itch.io/jam/mini-jam-75-wisdom) that's hosted by
 * [Light](https://twitter.com/T3amJoy) - Art &amp; Code
 * [Jarry Allen](https://twitter.com/TomWalat) - Art &amp; Code
 * [musicbycamo](https://www.instagram.com/musicbycamo/) - Music
+* [Asaroz](https://github.com/Asaroz) - Pixel art
 
 ## Built-With
 * [Unity Engine](https://unity.com/) - The game engine

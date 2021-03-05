@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class SoundManager : MonoBehaviour
 {
@@ -41,8 +42,21 @@ public class SoundManager : MonoBehaviour
     private  GameObject oneShotGameObject;
     private  AudioSource oneShotAudioSource;
 
+    public AudioMixer mixer;
+
+    public void SetMasterVolume(float volume)
+    {
+        mixer.SetFloat("masterVolume", volume);
+    }
+
+    public void SetMusicVolume(float volume)
+    {
+        mixer.SetFloat("musicVolume", volume);
+    }
+
     public void Initialize()
     {
+
         soundTimeDictionary = new Dictionary<Sound, float>();
         soundTimeDictionary[Sound.Placeholder] = 0;
 
@@ -64,9 +78,13 @@ public class SoundManager : MonoBehaviour
         DontDestroyOnLoad(soundGameObject);
         soundGameObject.transform.position = position;
         AudioSource audioSource = soundGameObject.AddComponent<AudioSource>();
-        audioSource.clip = GetAudioClip(sound);
+        audioSource.outputAudioMixerGroup = mixer.FindMatchingGroups("Music")[0];
 
-        if(loop && loopingSounds.ContainsKey(sound))
+        Debug.Log(mixer.FindMatchingGroups("Master/Music")[0]);
+
+        audioSource.clip = GetAudioClip(sound);
+        
+        if (loop && loopingSounds.ContainsKey(sound))
         {
             if (loopingSounds[sound] == null)
             {
