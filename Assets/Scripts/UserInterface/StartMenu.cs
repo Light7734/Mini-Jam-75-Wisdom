@@ -7,33 +7,34 @@ using UnityEngine.EventSystems;
 
 public class StartMenu : MonoBehaviour
 {
-    [SerializeField] Button playBtn, prefBtn, quitBtn;
-    [SerializeField] Sprite playBtnNormal, playBtnPress, prefBtnNormal, prefBtnPress, quitBtnNormal, quitBtnPress;
+    [SerializeField] private Button playBtn, prefBtn, quitBtn;
+    [SerializeField] private Sprite playBtnNormal, playBtnPress, prefBtnNormal, prefBtnPress, quitBtnNormal, quitBtnPress;
+    [SerializeField] private SceneLoader sceneLoader;
 
     public void Start()
     {
-        SoundManager.Initialize();
-        SoundManager.PlaySound(SoundManager.Sound.StartMenuBackground, Vector3.zero, true);
+        SoundManager.i.PlaySound(SoundManager.Sound.StartMenuBackground, Vector3.zero, true, true);
     }
 
     public void PlayBtnPressed()
     {
-        SoundManager.PlaySound(SoundManager.Sound.BtnClick);
-        SceneManager.LoadScene(1);
+        SoundManager.i.PlaySound(SoundManager.Sound.BtnClick);
+        SoundManager.i.StopSound(SoundManager.Sound.StartMenuBackground, true);
+
+        sceneLoader.LoadScene(1);
     }
 
     public void PrefBtnPressed()
     {
-        SoundManager.PlaySound(SoundManager.Sound.BtnClick);
+        SoundManager.i.PlaySound(SoundManager.Sound.BtnClick);
         Debug.Log("!!");
     }
 
     public void QuitBtnPressed()
     {
-        SoundManager.PlaySound(SoundManager.Sound.BtnClick);
+        SoundManager.i.PlaySound(SoundManager.Sound.BtnClick);
         Application.Quit();
     }
-
 
     #region VISUALS
 

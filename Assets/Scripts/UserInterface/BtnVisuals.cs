@@ -9,7 +9,7 @@ public class BtnVisuals : MonoBehaviour
     public void OnPress()
     {
         btn.image.sprite = pressed;
-        SoundManager.PlaySound(SoundManager.Sound.BtnPress);
+        SoundManager.i.PlaySound(SoundManager.Sound.BtnPress);
     }
 
     public void OnRelease()
