@@ -2612,7 +2612,7 @@ PrefabInstance:
         type: 3}
       propertyPath: soundAudioClipArray.Array.data[0].audioClip
       value: 
-      objectReference: {fileID: 8300000, guid: 886f1470fc958094bbd8f3fc6d3e561f, type: 3}
+      objectReference: {fileID: 8300000, guid: 6585f8857284d884ea4aaa297e9a1a1b, type: 3}
     - target: {fileID: -8005254799867323056, guid: f67bb63e5066fad4a8ac8fcdb1c9df08,
         type: 3}
       propertyPath: soundAudioClipArray.Array.data[1].audioClip

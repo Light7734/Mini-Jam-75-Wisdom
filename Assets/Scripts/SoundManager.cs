@@ -56,7 +56,6 @@ public class SoundManager : MonoBehaviour
 
     public void Initialize()
     {
-
         soundTimeDictionary = new Dictionary<Sound, float>();
         soundTimeDictionary[Sound.Placeholder] = 0;
 
