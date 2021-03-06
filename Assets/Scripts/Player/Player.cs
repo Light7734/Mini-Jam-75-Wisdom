@@ -127,24 +127,21 @@ public class Player : MonoBehaviour
 
     public void OnInteract(InputValue value)
     {
-        if (!controller.collisionState.below)
-            return;
-
         if (!shiftDown && crystalsInRange.Count != 0)
         {
-            crystals.Add(crystalsInRange[crystalsInRange.Count - 1].gameObject);
+            crystals.Add(crystalsInRange[0].gameObject);
 
-            if (crystalsInRange[crystalsInRange.Count - 1].tag == "blueCrystal")
+            if (crystalsInRange[0].tag == "blueCrystal")
                 AssignNewWeightStatus(++weightIndex);
 
-            crystalsInRange[crystalsInRange.Count - 1].SetActive(false);
+            crystalsInRange[0].SetActive(false);
         }
         else if(shiftDown && crystals.Count != 0)
         {
             crystals[0].SetActive(true);
             crystals[0].transform.position = transform.position + new Vector3(0f, .6f);
 
-            if (crystalsInRange[crystalsInRange.Count - 1].tag == "blueCrystal")
+            if (crystals[0].tag == "blueCrystal")
                 AssignNewWeightStatus(--weightIndex);
 
             crystals.RemoveAt(0);
