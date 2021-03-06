@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.InputSystem;
 
 // TODO: Tidy up / rename stuff
@@ -39,7 +40,12 @@ public class Player : MonoBehaviour
     #region GameLogic
     [SerializeField] private BoxCollider2D collider;
 
+    private List<GameObject> crystals;
+    GameObject crystalInRange = null;
+
     #endregion // __GAME_LOGIC__
+
+
 
     void Start()
     {
@@ -55,6 +61,9 @@ public class Player : MonoBehaviour
         // Jump / Gravity
         gravity = -(2 * jumpHeight) / Mathf.Pow(timeToJumpApex, 2);
         jumpVelocity = Mathf.Abs(gravity * timeToJumpApex);
+
+
+        crystals = new List<GameObject>();
     }
 
     void Update()
@@ -85,6 +94,26 @@ public class Player : MonoBehaviour
         controller.Move(desiredVelocity * Time.deltaTime, ForceDir.Self);
 
         #endregion // __MOVEMENT__ //
+
+    }
+
+    public void OnInteract(InputValue value)
+    {
+        if (!controller.collisionState.below)
+            return;
+
+        if (crystalInRange)
+        {
+            crystals.Add(crystalInRange);
+            crystalInRange.SetActive(false);
+        }
+        else if(crystals.Count != 0)
+        {
+            crystals[0].SetActive(true);
+            crystals[0].transform.position = transform.position + new Vector3(0f, .6f);
+            crystals.RemoveAt(0);
+        }
+
     }
 
     public void OnJump(InputValue value)
@@ -98,13 +127,15 @@ public class Player : MonoBehaviour
         moveDir = value.Get<float>();    
     }
 
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.tag == "crystal")
         {
             Debug.Log("Tag is crystal");
             collision.transform.position = new Vector2(collision.transform.position.x, collision.transform.position.y + .15f);
+            collision.transform.GetChild(0).gameObject.SetActive(true);
+
+            crystalInRange = collision.gameObject;
         }
     }
 
@@ -114,7 +145,9 @@ public class Player : MonoBehaviour
         {
             Debug.Log("Tag was crystal");
             collision.transform.position = new Vector2(collision.transform.position.x, collision.transform.position.y - .15f);
+            collision.transform.GetChild(0).gameObject.SetActive(false);
 
+            crystalInRange = null;
         }
     }
 
