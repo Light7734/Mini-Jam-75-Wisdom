@@ -138,13 +138,14 @@ public class Player : MonoBehaviour
                 AssignNewWeightStatus(++weightIndex);
 
             crystalsInRange[crystalsInRange.Count - 1].SetActive(false);
+            crystalsInRange.RemoveAt(crystalsInRange.Count - 1);
         }
         else if(shiftDown && crystals.Count != 0)
         {
             crystals[0].SetActive(true);
             crystals[0].transform.position = transform.position + new Vector3(0f, .6f);
 
-            if (crystalsInRange[crystalsInRange.Count - 1].tag == "blueCrystal")
+            if (crystals[0].tag == "blueCrystal")
                 AssignNewWeightStatus(--weightIndex);
 
             crystals.RemoveAt(0);
