@@ -450,7 +450,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 2}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!4 &707522441
@@ -1167,8 +1167,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 3303944661755308770, guid: 7f6e8f74d6786ee49b1377e3621d8dc0,
-    type: 3}
+  m_Sprite: {fileID: 21300000, guid: c57fac6bec170b441b0d2651c89c9281, type: 3}
   m_Color: {r: 0.4114169, g: 1, b: 0.3726415, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -1210,7 +1209,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.9375, y: 0.9375}
+    oldSize: {x: 0.625, y: 0.625}
     newSize: {x: 0.625, y: 0.625}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -2386,7 +2385,7 @@ Tilemap:
     second:
       serializedVersion: 2
       m_TileIndex: 6
-      m_TileSpriteIndex: 6
+      m_TileSpriteIndex: 7
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -3321,11 +3320,11 @@ Tilemap:
   - m_RefCount: 157
     m_Data: {fileID: -6108889420429456849, guid: 62470fca7be2cc342ae68b5e77e2a6da,
       type: 3}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
   - m_RefCount: 1
     m_Data: {fileID: 5441223297315994465, guid: 62470fca7be2cc342ae68b5e77e2a6da,
       type: 3}
-  - m_RefCount: 0
-    m_Data: {fileID: 0}
   - m_RefCount: 5
     m_Data: {fileID: 21300000, guid: f4e46c2485c046d4896b80b90829843b, type: 3}
   m_TileMatrixArray:
