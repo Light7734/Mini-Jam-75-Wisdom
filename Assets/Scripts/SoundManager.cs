@@ -31,6 +31,13 @@ public class SoundManager : MonoBehaviour
         BtnPress,
         BtnClick,
 
+        CrystalInsert,
+        CrystalRemove,
+
+        CrystalPickupRed,
+        CrystalPickupBlue,
+        CrystalDrop,
+
         Placeholder
     }
 

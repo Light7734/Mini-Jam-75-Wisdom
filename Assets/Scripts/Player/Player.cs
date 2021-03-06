@@ -43,7 +43,10 @@ public class Player : MonoBehaviour
     private List<GameObject> crystals = new List<GameObject>();
     private List<GameObject> crystalsInRange = new List<GameObject>();
 
+    [SerializeField] private Gate gate;
+
     private bool shiftDown = false;
+    private bool gateInRange = false;
 
     private int weightIndex = 2;
 
@@ -129,15 +132,19 @@ public class Player : MonoBehaviour
     {
         if (!shiftDown && crystalsInRange.Count != 0)
         {
+            SoundManager.i.PlaySound(SoundManager.Sound.CrystalPickupBlue);
             crystals.Add(crystalsInRange[0].gameObject);
 
             if (crystalsInRange[0].tag == "blueCrystal")
                 AssignNewWeightStatus(++weightIndex);
 
             crystalsInRange[0].SetActive(false);
+
+            return;
         }
         else if(shiftDown && crystals.Count != 0)
         {
+            SoundManager.i.PlaySound(SoundManager.Sound.CrystalDrop);
             crystals[0].SetActive(true);
             crystals[0].transform.position = transform.position + new Vector3(0f, .6f);
 
@@ -145,6 +152,20 @@ public class Player : MonoBehaviour
                 AssignNewWeightStatus(--weightIndex);
 
             crystals.RemoveAt(0);
+
+            return;
+        }
+
+        if(!shiftDown && crystals.Count != 0 && gateInRange)
+        {
+            gate.AddCrystal(crystals[crystals.Count - 1]);
+            crystals.RemoveAt(crystals.Count - 1);
+            AssignNewWeightStatus(--weightIndex);
+        }
+        else if(shiftDown && gateInRange)
+        {
+            crystals.Add(gate.RemoveCrystal());
+            AssignNewWeightStatus(++weightIndex);
         }
 
     }
@@ -180,6 +201,12 @@ public class Player : MonoBehaviour
 
             crystalsInRange.Add(collision.gameObject);
         }
+
+        if(collision.tag == "gate")
+        {
+            collision.transform.GetChild(0).gameObject.SetActive(true);
+            gateInRange = true;
+        }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
@@ -190,6 +217,12 @@ public class Player : MonoBehaviour
             collision.transform.GetChild(0).gameObject.SetActive(false);
 
             crystalsInRange.Remove(collision.gameObject);
+        }
+
+        if (collision.tag == "gate")
+        {
+            collision.transform.GetChild(0).gameObject.SetActive(false);
+            gateInRange = false;
         }
     }
 
