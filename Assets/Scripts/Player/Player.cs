@@ -5,6 +5,7 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(PlayerController))]
 public class Player : MonoBehaviour
 {
+    #region Movement
     [SerializeField] private PlayerController controller;
 
     // General Movement
@@ -33,6 +34,12 @@ public class Player : MonoBehaviour
 
     private float moveDir = 0f;
     private bool isJumping = false;
+    #endregion // __MOVEMENT__ //
+
+    #region GameLogic
+    [SerializeField] private BoxCollider2D collider;
+
+    #endregion // __GAME_LOGIC__
 
     void Start()
     {
@@ -48,11 +55,11 @@ public class Player : MonoBehaviour
         // Jump / Gravity
         gravity = -(2 * jumpHeight) / Mathf.Pow(timeToJumpApex, 2);
         jumpVelocity = Mathf.Abs(gravity * timeToJumpApex);
-
     }
 
     void Update()
     {
+        #region Movement
         // COLLISIONS //
         if (controller.collisionState.below && desiredVelocity.y < 0f)
             desiredVelocity.y = 0f;
@@ -76,6 +83,8 @@ public class Player : MonoBehaviour
         }
 
         controller.Move(desiredVelocity * Time.deltaTime, ForceDir.Self);
+
+        #endregion // __MOVEMENT__ //
     }
 
     public void OnJump(InputValue value)
@@ -88,5 +97,26 @@ public class Player : MonoBehaviour
     {
         moveDir = value.Get<float>();    
     }
+
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.tag == "crystal")
+        {
+            Debug.Log("Tag is crystal");
+            collision.transform.position = new Vector2(collision.transform.position.x, collision.transform.position.y + .15f);
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.tag == "crystal")
+        {
+            Debug.Log("Tag was crystal");
+            collision.transform.position = new Vector2(collision.transform.position.x, collision.transform.position.y - .15f);
+
+        }
+    }
+
 
 }
