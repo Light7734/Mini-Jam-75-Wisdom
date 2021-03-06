@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -24,8 +25,8 @@ public class Player : MonoBehaviour
     [SerializeField] [Range(0f, 1f)] private float accelerationGrounded = .1f;
 
     // Jumping
-    [SerializeField] [Range(1f, 10f)] private float jumpHeight= 5f;
-    [SerializeField] [Range(0f, 1f)] private float timeToJumpApex= .1f;
+    [SerializeField] [Range(0.01f, 10f)] private float jumpHeight = 5f;
+    [SerializeField] [Range(0f, 1f)] private float timeToJumpApex = .1f;
 
     private float gravity;
     private float jumpVelocity;
@@ -38,17 +39,39 @@ public class Player : MonoBehaviour
     #endregion // __MOVEMENT__ //
 
     #region GameLogic
-    [SerializeField] private BoxCollider2D collider;
 
-    private List<GameObject> crystals;
-    GameObject crystalInRange = null;
+    private List<GameObject> crystals = new List<GameObject>();
+    private List<GameObject> crystalsInRange = new List<GameObject>();
+
+    private bool shiftDown = false;
+
+    private int weightIndex = 2;
+
 
     #endregion // __GAME_LOGIC__
 
+    [Serializable]
+    public struct PlayerWeightState
+    {
+        public float speed;
+        public float velocity;
 
+        public float jumpHeight;
+        public float timeToJumpApex;
+    }
+
+    [SerializeField] private List<PlayerWeightState> weightStates = new List<PlayerWeightState>();
+
+    private InputAction shiftAction;
 
     void Start()
     {
+        shiftAction = new InputAction(binding: "<Keyboard>/leftShift");
+        shiftAction.Enable();
+
+        shiftAction.performed += context => shiftDown = true;
+        shiftAction.canceled += context => shiftDown = false;
+
         // Controller attributes
         PlayerController.Attributes controllerAttributes;
 
@@ -68,7 +91,12 @@ public class Player : MonoBehaviour
 
     void Update()
     {
+        if (controller.collisionState.above)
+            Debug.Log("Collided above!!!");
+
         #region Movement
+
+
         // COLLISIONS //
         if (controller.collisionState.below && desiredVelocity.y < 0f)
             desiredVelocity.y = 0f;
@@ -102,18 +130,37 @@ public class Player : MonoBehaviour
         if (!controller.collisionState.below)
             return;
 
-        if (crystalInRange)
+        if (!shiftDown && crystalsInRange.Count != 0)
         {
-            crystals.Add(crystalInRange);
-            crystalInRange.SetActive(false);
+            crystals.Add(crystalsInRange[crystalsInRange.Count - 1].gameObject);
+
+            if (crystalsInRange[crystalsInRange.Count - 1].tag == "blueCrystal")
+                AssignNewWeightStatus(++weightIndex);
+
+            crystalsInRange[crystalsInRange.Count - 1].SetActive(false);
         }
-        else if(crystals.Count != 0)
+        else if(shiftDown && crystals.Count != 0)
         {
             crystals[0].SetActive(true);
             crystals[0].transform.position = transform.position + new Vector3(0f, .6f);
+
+            if (crystalsInRange[crystalsInRange.Count - 1].tag == "blueCrystal")
+                AssignNewWeightStatus(--weightIndex);
+
             crystals.RemoveAt(0);
         }
 
+    }
+
+    private void AssignNewWeightStatus(int index)
+    {
+        PlayerWeightState newState = weightStates[index];
+
+        jumpHeight = newState.jumpHeight;
+        timeToJumpApex = newState.timeToJumpApex;
+
+        gravity = -(2 * jumpHeight) / Mathf.Pow(timeToJumpApex, 2);
+        jumpVelocity = Mathf.Abs(gravity * timeToJumpApex);
     }
 
     public void OnJump(InputValue value)
@@ -129,25 +176,23 @@ public class Player : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.tag == "crystal")
+        if(collision.tag == "blueCrystal")
         {
-            Debug.Log("Tag is crystal");
             collision.transform.position = new Vector2(collision.transform.position.x, collision.transform.position.y + .15f);
             collision.transform.GetChild(0).gameObject.SetActive(true);
 
-            crystalInRange = collision.gameObject;
+            crystalsInRange.Add(collision.gameObject);
         }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.tag == "crystal")
+        if (collision.tag == "blueCrystal")
         {
-            Debug.Log("Tag was crystal");
             collision.transform.position = new Vector2(collision.transform.position.x, collision.transform.position.y - .15f);
             collision.transform.GetChild(0).gameObject.SetActive(false);
 
-            crystalInRange = null;
+            crystalsInRange.Remove(collision.gameObject);
         }
     }
 
