@@ -1,31 +1,43 @@
 fileFormatVersion: 2
-guid: 5285cff2c0f5346448dec59654829c14
+guid: defc9cd2f08d8334da154b406841f5af
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 7640959271450281547
-    second: wisp_sprite_sheet_0
+      213: -1391193988281709189
+    second: Gate_0
   - first:
-      213: -1030253042876345
-    second: wisp_sprite_sheet_1
+      213: 8403885437829759954
+    second: Gate_1
   - first:
-      213: 7518244244928210315
-    second: wisp_sprite_sheet_2
+      213: 4376566583330594829
+    second: Gate_2
   - first:
-      213: 447701296871477418
-    second: wisp_sprite_sheet_3
+      213: 8420189361392050232
+    second: Gate_3
   - first:
-      213: 7541519446649693585
-    second: wisp_sprite_sheet_4
+      213: 866224257767298027
+    second: Gate_4
   - first:
-      213: 3843555430440351226
-    second: wisp_sprite_sheet_5
+      213: -4036253510451412084
+    second: Gate_5
   - first:
-      213: -6031402897440620718
-    second: wisp_sprite_sheet_6
+      213: -3617241975000178931
+    second: Gate_6
   - first:
-      213: -4358846047673646634
-    second: wisp_sprite_sheet_7
+      213: -8121147267246148731
+    second: Gate_7
+  - first:
+      213: -3947161540584620160
+    second: Gate_8
+  - first:
+      213: -5237561899237907084
+    second: Gate_9
+  - first:
+      213: -1451627747850895568
+    second: Gate_10
+  - first:
+      213: -5914002750493198526
+    second: Gate_11
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -111,13 +123,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: wisp_sprite_sheet_0
+      name: Gate_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 32
-        height: 32
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -125,20 +137,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b46850e49f32a0a60800000000000000
-      internalID: 7640959271450281547
+      spriteID: b7d4fc2407c71bce0800000000000000
+      internalID: -1391193988281709189
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: wisp_sprite_sheet_1
+      name: Gate_1
       rect:
         serializedVersion: 2
         x: 32
         y: 0
         width: 32
-        height: 32
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -146,20 +158,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 740c9558df65cfff0800000000000000
-      internalID: -1030253042876345
+      spriteID: 2d3cbeea74990a470800000000000000
+      internalID: 8403885437829759954
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: wisp_sprite_sheet_2
+      name: Gate_2
       rect:
         serializedVersion: 2
         x: 64
         y: 0
         width: 32
-        height: 32
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -167,20 +179,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b852291be4b265860800000000000000
-      internalID: 7518244244928210315
+      spriteID: d00e3479e10bcbc30800000000000000
+      internalID: 4376566583330594829
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: wisp_sprite_sheet_3
+      name: Gate_3
       rect:
         serializedVersion: 2
         x: 96
         y: 0
         width: 32
-        height: 32
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -188,20 +200,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: aa0918d15fd863600800000000000000
-      internalID: 447701296871477418
+      spriteID: 830eb43bc958ad470800000000000000
+      internalID: 8420189361392050232
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: wisp_sprite_sheet_4
+      name: Gate_4
       rect:
         serializedVersion: 2
         x: 128
         y: 0
-        width: 32
-        height: 32
+        width: 33
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -209,20 +221,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1956144eafbd8a860800000000000000
-      internalID: 7541519446649693585
+      spriteID: be3db0c7f52750c00800000000000000
+      internalID: 866224257767298027
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: wisp_sprite_sheet_5
+      name: Gate_5
       rect:
         serializedVersion: 2
         x: 160
         y: 0
         width: 32
-        height: 32
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -230,50 +242,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: af5bbe9cc4d075530800000000000000
-      internalID: 3843555430440351226
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: wisp_sprite_sheet_6
-      rect:
-        serializedVersion: 2
-        x: 192
-        y: 0
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 25f3ac045072c4ca0800000000000000
-      internalID: -6031402897440620718
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: wisp_sprite_sheet_7
-      rect:
-        serializedVersion: 2
-        x: 224
-        y: 0
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 6d10cc12d944283c0800000000000000
-      internalID: -4358846047673646634
+      spriteID: c83ce1631d85cf7c0800000000000000
+      internalID: -4036253510451412084
       vertices: []
       indices: 
       edges: []

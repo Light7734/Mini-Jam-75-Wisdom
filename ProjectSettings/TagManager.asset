@@ -6,6 +6,7 @@ TagManager:
   tags:
   - crystal
   - blueCrystal
+  - gate
   layers:
   - Default
   - TransparentFX
