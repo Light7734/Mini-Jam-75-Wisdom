@@ -40,6 +40,13 @@ public class SoundManager : MonoBehaviour
 
         Death,
 
+        GateOpen,
+        PressurePlate,
+
+        highJump,
+        normalJump,
+        lowJump,
+
         Placeholder,
     }
 

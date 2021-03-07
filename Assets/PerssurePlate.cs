@@ -14,6 +14,8 @@ public class PerssurePlate : MonoBehaviour
         Debug.Log(weight);
         if(weight <= neededWeight)
         {
+            SoundManager.i.PlaySound(SoundManager.Sound.PressurePlate);
+
             doorAnimator.SetTrigger("open");
             plateAnimator.SetTrigger("open");
         }

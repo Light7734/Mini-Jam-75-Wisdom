@@ -37,6 +37,7 @@ public class Gate : MonoBehaviour
 
         if (crystalsAquired == crystalsNeeded)
         {
+            SoundManager.i.PlaySound(SoundManager.Sound.GateOpen);
             open = true;
             GetComponent<Animator>().SetTrigger("Open");
         }

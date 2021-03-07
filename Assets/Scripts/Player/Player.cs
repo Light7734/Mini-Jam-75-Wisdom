@@ -55,6 +55,8 @@ public class Player : MonoBehaviour
 
     private int weightIndex = 2;
     [SerializeField] private SceneLoader sceneLoader;
+    [SerializeField] private SpriteRenderer sprite;
+
 
     #endregion // __GAME_LOGIC__
 
@@ -131,6 +133,15 @@ public class Player : MonoBehaviour
         // JUMP
         if(isJumping)
         {
+            if (weightIndex == 2)
+                SoundManager.i.PlaySound(SoundManager.Sound.normalJump);
+
+            if (weightIndex > 2)
+                SoundManager.i.PlaySound(SoundManager.Sound.highJump);
+
+            if (weightIndex < 2)
+                SoundManager.i.PlaySound(SoundManager.Sound.lowJump);
+
             desiredVelocity.y = jumpVelocity;
             isJumping = false;
         }
@@ -224,6 +235,17 @@ public class Player : MonoBehaviour
 
         gravity = -(2 * jumpHeight) / Mathf.Pow(timeToJumpApex, 2);
         jumpVelocity = Mathf.Abs(gravity * timeToJumpApex);
+
+        if (index == 4)
+            sprite.color = new Color(43f / 255f, 136f / 255f, 255f / 255f, 255f / 255f);
+        if (index == 3)
+            sprite.color = new Color(0f / 255f, 242f / 255f, 251f / 255f, 255f / 255f);
+        if (index == 2)
+            sprite.color = new Color(0f / 255f, 255f / 255f, 0f / 255f, 255f / 255f);
+        if (index == 1)
+            sprite.color = new Color(255f / 255f, 145f / 255f, 42f / 255f, 255f / 255f);
+        if (index == 0)
+            sprite.color = new Color(255f / 255f, 55f / 255f, 10f / 255f, 255f / 255f);
     }
 
     public void OnJump(InputValue value)
