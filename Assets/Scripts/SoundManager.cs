@@ -38,7 +38,9 @@ public class SoundManager : MonoBehaviour
         CrystalPickupBlue,
         CrystalDrop,
 
-        Placeholder
+        Death,
+
+        Placeholder,
     }
 
     private  Dictionary<Sound, float> soundTimeDictionary;
