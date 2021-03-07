@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 // TODO: Tidy up / rename stuff
 [RequireComponent(typeof(PlayerController))]
@@ -40,16 +41,20 @@ public class Player : MonoBehaviour
 
     #region GameLogic
 
+    [SerializeField] private Animator animator;
+
     private List<GameObject> crystals = new List<GameObject>();
     private List<GameObject> crystalsInRange = new List<GameObject>();
 
-    [SerializeField] private Gate gate;
+    [SerializeField] private Gate gate = null;
 
     private bool shiftDown = false;
     private bool gateInRange = false;
 
-    private int weightIndex = 2;
+    private bool dying = false;
 
+    private int weightIndex = 2;
+    [SerializeField] private SceneLoader sceneLoader;
 
     #endregion // __GAME_LOGIC__
 
@@ -67,8 +72,16 @@ public class Player : MonoBehaviour
 
     private InputAction shiftAction;
 
+    private static bool started = false;
+
     void Start()
     {
+        if(!started)
+        {
+            SoundManager.i.PlaySound(SoundManager.Sound.GameBackground, Vector3.zero, true, true);
+            started = true;
+        }
+
         shiftAction = new InputAction(binding: "<Keyboard>/leftShift");
         shiftAction.Enable();
 
@@ -94,8 +107,8 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-        if (controller.collisionState.above)
-            Debug.Log("Collided above!!!");
+        if (dying)
+            return;
 
         #region Movement
 
@@ -130,13 +143,23 @@ public class Player : MonoBehaviour
 
     public void OnInteract(InputValue value)
     {
+        if (gate == null)
+            return;
+
         if (!shiftDown && crystalsInRange.Count != 0)
         {
-            SoundManager.i.PlaySound(SoundManager.Sound.CrystalPickupBlue);
             crystals.Add(crystalsInRange[0].gameObject);
 
             if (crystalsInRange[0].tag == "blueCrystal")
+            {
+                SoundManager.i.PlaySound(SoundManager.Sound.CrystalPickupBlue);
                 AssignNewWeightStatus(++weightIndex);
+            }
+            else if (crystalsInRange[0].tag == "redCrystal")
+            {
+                SoundManager.i.PlaySound(SoundManager.Sound.CrystalPickupRed);
+                AssignNewWeightStatus(--weightIndex);
+            }
 
             crystalsInRange[0].SetActive(false);
 
@@ -150,24 +173,46 @@ public class Player : MonoBehaviour
 
             if (crystals[0].tag == "blueCrystal")
                 AssignNewWeightStatus(--weightIndex);
+            else if (crystals[0].tag == "redCrystal")
+                AssignNewWeightStatus(++weightIndex);
 
             crystals.RemoveAt(0);
 
             return;
         }
 
-        if(!shiftDown && crystals.Count != 0 && gateInRange)
+        if(!shiftDown && crystals.Count != 0 && gateInRange && !gate.open)
         {
             gate.AddCrystal(crystals[crystals.Count - 1]);
+
+            if(crystals[crystals.Count - 1].tag == "blueCrystal")
+                AssignNewWeightStatus(--weightIndex);
+            else if(crystals[crystals.Count - 1].tag == "redCrystal")
+                AssignNewWeightStatus(++weightIndex);
+
             crystals.RemoveAt(crystals.Count - 1);
-            AssignNewWeightStatus(--weightIndex);
+
+            return;
         }
-        else if(shiftDown && gateInRange)
+        else if(shiftDown && gateInRange && !gate.open)
         {
-            crystals.Add(gate.RemoveCrystal());
-            AssignNewWeightStatus(++weightIndex);
+            GameObject crystal = gate.RemoveCrystal();
+            if(crystal != null)
+            {
+                Debug.Log("Adding");
+                crystals.Add(crystal);
+
+                if (crystal.tag == "blueCrystal")
+                    AssignNewWeightStatus(++weightIndex);
+                else if (crystal.tag == "redCrystal")
+                    AssignNewWeightStatus(--weightIndex);
+            }
+
+            return;
         }
 
+        if (!shiftDown && gate.open && gateInRange)
+            sceneLoader.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
     private void AssignNewWeightStatus(int index)
@@ -194,7 +239,7 @@ public class Player : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.tag == "blueCrystal")
+        if(collision.tag == "blueCrystal" || collision.tag == "redCrystal")
         {
             collision.transform.position = new Vector2(collision.transform.position.x, collision.transform.position.y + .15f);
             collision.transform.GetChild(0).gameObject.SetActive(true);
@@ -207,11 +252,23 @@ public class Player : MonoBehaviour
             collision.transform.GetChild(0).gameObject.SetActive(true);
             gateInRange = true;
         }
+
+        if(collision.tag == "spike")
+        {
+            dying = true;
+            animator.SetTrigger("dying");
+
+            sceneLoader.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            SoundManager.i.PlaySound(SoundManager.Sound.Death);
+        }
+
+        if(collision.tag == "pressurePlate")
+            collision.gameObject.GetComponent<PerssurePlate>().ApplyPressure(weightIndex);
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.tag == "blueCrystal")
+        if (collision.tag == "blueCrystal" || collision.tag == "redCrystal")
         {
             collision.transform.position = new Vector2(collision.transform.position.x, collision.transform.position.y - .15f);
             collision.transform.GetChild(0).gameObject.SetActive(false);
@@ -225,6 +282,5 @@ public class Player : MonoBehaviour
             gateInRange = false;
         }
     }
-
 
 }

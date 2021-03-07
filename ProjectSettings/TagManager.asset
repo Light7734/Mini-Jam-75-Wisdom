@@ -7,6 +7,11 @@ TagManager:
   - crystal
   - blueCrystal
   - gate
+  - redCrystal
+  - redSocket
+  - blueSocket
+  - spike
+  - pressurePlate
   layers:
   - Default
   - TransparentFX
