@@ -10,7 +10,7 @@
 #### ***Rated:*** TBA
 
 ## Controls
-* **WD**: Move
+* **AD**: Move
 * **Space**: Jump
 * **E**: Pick crystal / Insert crystal into the gate
 * **SHIFT + E**: Drop crystal / Pick crystal from the gate
