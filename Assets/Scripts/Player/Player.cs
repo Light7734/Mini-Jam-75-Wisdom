@@ -4,7 +4,6 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
-// TODO: Tidy up / rename stuff
 [RequireComponent(typeof(PlayerController))]
 public class Player : MonoBehaviour
 {
