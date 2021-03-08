@@ -16,7 +16,7 @@
 * **SHIFT + E:** Drop crystal / Pick crystal from the gate
 
 ## Installing
-Follow the instructions below to install the unity project *Recommended unity version: 2019.4.21f1*:
+Follow the instructions below to install the unity project, *recommended unity version: 2019.4.21f1*:
 * Clone the repository ( or download it az a zip, and unzip it ).
 * Go to UnityHub -> Projects -> Add -> *Open the repository's folder*
 * Enjoy
