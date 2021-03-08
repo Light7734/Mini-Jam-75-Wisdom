@@ -1,5 +1,5 @@
 # Mini-Jam-75-Wisdom
-### Play and rate our game [*here*!](https://itch.io/jam/mini-jam-75-wisdom/rate/948625)
+### Play the game [*here*!](https://itch.io/jam/mini-jam-75-wisdom/rate/948625)
 
 #### ***Name:*** Sophyrons
 #### ***Theme:*** Wisdom
@@ -16,7 +16,7 @@
 * **SHIFT + E:** Drop crystal / Pick crystal from the gate
 
 ## Installing
-Follow the instructions below to install the unity project, *recommended unity version: 2019.4.21f1*:
+Follow the instructions below to install the unity project, *recommended editor version: 2019.4.21f1*:
 * Clone the repository ( or download it az a zip, and unzip it ).
 * Go to UnityHub -> Projects -> Add -> *Open the repository's folder*
 * Enjoy
