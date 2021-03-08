@@ -22,12 +22,6 @@ public class PlayerController : ControllerBase
 
     [SerializeField] Tilemap tileMap;
 
-    // Events TODO:
-    public event Action<RaycastHit2D> onControllerCollidedEvent;
-    public event Action<Collider2D> onTriggerEnterEvent;
-    public event Action<Collider2D> onTriggerStayEvent;
-    public event Action<Collider2D> onTriggerExitrEvent;
-
     protected override void Start()
     {
         base.Start();
@@ -37,7 +31,6 @@ public class PlayerController : ControllerBase
     {
         maxSlopeAscendAngle = attributes.maxSlopeAscendAngle;
         maxSlopeDecendAngle = attributes.maxSlopeDecendAngle;
-        stepHeight = attributes.stepHeight;
     }
 
     public void IgnoreOneWayPlatforms()
@@ -181,36 +174,6 @@ public class PlayerController : ControllerBase
 
                 float slopeAngle = Vector2.Angle(hit.normal, Vector2.up);
 
-                //// Step
-                //if (i == 0 && slopeAngle == 90f && collisionState.prevBelow)
-                //{
-                //    Sprite sprite = tileMap.GetSprite(tileMap.WorldToCell(hit.point + SHELL_WIDTH * xDir * Vector2.right));;
-                //    List<Vector2> physicsShape = new List<Vector2>();
-                //
-                //    float stairTop;
-                //    float stairHeight = Mathf.Infinity;
-                //
-                //    for (int j = 0; j < sprite.GetPhysicsShapeCount(); j++)
-                //    {
-                //        sprite.GetPhysicsShape(j, physicsShape);
-                //        stairTop = tileMap.WorldToCell(hit.point).y + .5f + physicsShape[2].y;
-                //
-                //        if (stairTop - hit.point.y <= 0)
-                //            continue;
-                //
-                //        if (stairTop - hit.point.y < stairHeight)
-                //            stairHeight = stairTop - hit.point.y;
-                //    }
-                //
-                //    if (stairHeight <= stepHeight)
-                //    {
-                //        velocity.y = stairHeight + SHELL_WIDTH;
-                //        climbingStair = true;
-                //        distToStair = hit.distance;
-                //        continue;
-                //    }
-                //}
-
                 // Ignore rays against the stair
                 if (climbingStair && distToStair == hit.distance)
                     continue;
@@ -306,18 +269,6 @@ public class PlayerController : ControllerBase
         {
             Vector2 rayOrigin = Mathf.Sign(velocity.x) == -1f ? raycastOrigins.bottomRight : raycastOrigins.bottomLeft;
             RaycastHit2D hit = Physics2D.Raycast(rayOrigin, Vector2.down, stepHeight + SHELL_WIDTH, platformMask | oneWayPlatformMask);
-
-            //// Step down
-            //if(hit)
-            //{
-            //    if( !( (ignoreOneWayPlatforms && Mathf.Pow(2, hit.transform.gameObject.layer) == oneWayPlatformMask.value) ||
-            //           ignoredOneWayPlatform == hit.transform.gameObject) )
-            //    {
-            //        velocity.y = -(Mathf.Abs(hit.distance) - SHELL_WIDTH);
-            //        collisionState.below = true;
-            //        collisionState.ascendingSlope = false;
-            //    }
-            //}
         }
     }
 
@@ -387,7 +338,6 @@ public class PlayerController : ControllerBase
     {
         public float maxSlopeDecendAngle;
         public float maxSlopeAscendAngle;
-        public float stepHeight;
     }
 
     public class CollisionState

@@ -27,21 +27,20 @@ public class SoundManager : MonoBehaviour
     {
         StartMenuBackground,
         GameBackground,
-        BtnHover,
+
         BtnPress,
-        BtnClick,
+        BtnRelease,
+
+        GateOpen,
+        PressurePlate,
 
         CrystalInsert,
         CrystalRemove,
-
         CrystalPickupRed,
         CrystalPickupBlue,
         CrystalDrop,
 
         Death,
-
-        GateOpen,
-        PressurePlate,
 
         highJump,
         normalJump,
@@ -90,27 +89,24 @@ public class SoundManager : MonoBehaviour
             return;
 
         GameObject soundGameObject = new GameObject("Sound");
-        DontDestroyOnLoad(soundGameObject);
         soundGameObject.transform.position = position;
+        DontDestroyOnLoad(soundGameObject);
+
         AudioSource audioSource = soundGameObject.AddComponent<AudioSource>();
         audioSource.outputAudioMixerGroup = mixer.FindMatchingGroups("Music")[0];
-
-        Debug.Log(mixer.FindMatchingGroups("Master/Music")[0]);
-
         audioSource.clip = GetAudioClip(sound);
-        
+
         if (loop && loopingSounds.ContainsKey(sound))
         {
             if (loopingSounds[sound] == null)
             {
                 audioSource.loop = true;
                 loopingSounds[sound] = soundGameObject;
-                Debug.Log("SET!");
             }
             else
             {
                 Debug.LogWarning("The sound " + sound + " is already looping");
-                Object.Destroy(soundGameObject);
+                Destroy(soundGameObject);
                 return;
             }
         }
@@ -119,13 +115,13 @@ public class SoundManager : MonoBehaviour
         {
             audioSource.volume = 0f;
             stopFadeIn[sound] = false;
-            SoundManager.i.StartCoroutine(FadeIn(audioSource, sound));
+            i.StartCoroutine(FadeIn(audioSource, sound));
         }
 
         audioSource.Play();
 
         if(!loop)
-            Object.Destroy(soundGameObject, oneShotAudioSource.clip.length);
+            Destroy(soundGameObject, oneShotAudioSource.clip.length);
     }
 
     private IEnumerator FadeIn(AudioSource source, Sound sound)
@@ -134,7 +130,6 @@ public class SoundManager : MonoBehaviour
         while (source.volume < 1f)
         {
             source.volume += diffTo1 / (1.0f / 0.1f); ;
-            Debug.Log(source.volume);
 
             if (!stopFadeIn[sound])
                 yield return new WaitForSeconds(0.1f);
@@ -151,12 +146,11 @@ public class SoundManager : MonoBehaviour
         {
             stopFadeIn[sound] = true;
             source.volume -= diffTo0 / (1.0f / 0.1f);
-            Debug.Log(source.volume);
             yield return new WaitForSeconds(0.1f);
         }
 
         if (source.volume <= 0f)
-            Object.Destroy(gameObject);
+            Destroy(gameObject);
     }
 
     public void StopSound(Sound sound, bool fadeOut = false)
@@ -167,20 +161,17 @@ public class SoundManager : MonoBehaviour
             {
                 if (fadeOut)
                 {
-                    SoundManager.i.StartCoroutine(FadeOut(loopingSounds[sound], loopingSounds[sound].GetComponent<AudioSource>(), sound));
+                    i.StartCoroutine(FadeOut(loopingSounds[sound], loopingSounds[sound].GetComponent<AudioSource>(), sound));
                     loopingSounds[sound] = null;
                     return;
                 }
 
-                Object.Destroy(loopingSounds[sound]);
+                Destroy(loopingSounds[sound]);
                 loopingSounds[sound] = null;
             }
             else
-            {
                 Debug.LogWarning("The sound " + sound + " is not playing");
-            }
         }
-
     }
 
     public void PlaySound(Sound sound)
@@ -228,9 +219,7 @@ public class SoundManager : MonoBehaviour
             if (soundAudioClip.sound == sound)
                 return soundAudioClip.audioClip;
 
-        Debug.LogError("The Sound " + sound + " not found!");
         return null;
-
     }
 
  }

@@ -1174,6 +1174,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1719770988}
+  - {fileID: 1252450799}
   m_Father: {fileID: 1560753659}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1198,7 +1199,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &782843908
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1267,8 +1268,8 @@ RectTransform:
   m_Father: {fileID: 1252450799}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 1, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 3, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -1450,13 +1451,13 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 827300298}
-  m_Father: {fileID: 1560753659}
-  m_RootOrder: 2
+  m_Father: {fileID: 777453796}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: -10, y: 0}
+  m_SizeDelta: {x: -10, y: 2}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1424619493
 GameObject:
@@ -1564,8 +1565,8 @@ RectTransform:
   m_Father: {fileID: 733728866}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 1, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 3, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -1815,7 +1816,6 @@ RectTransform:
   m_Children:
   - {fileID: 18854629}
   - {fileID: 777453796}
-  - {fileID: 1252450799}
   m_Father: {fileID: 782843908}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1998,15 +1998,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c046f394fa391540b2d8cb6b253a397, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playBtn: {fileID: 203100231}
-  prefBtn: {fileID: 492481293}
-  quitBtn: {fileID: 1948384750}
-  playBtnNormal: {fileID: 21300000, guid: 2909fbbd0b32d154e91035fefbf3b310, type: 3}
-  playBtnPress: {fileID: 21300000, guid: 0d8b4c6fa49be8143bd072f45d716941, type: 3}
-  prefBtnNormal: {fileID: 21300000, guid: dbe0f0ebe3ccf9b4fb7ee8a89bf0ae52, type: 3}
-  prefBtnPress: {fileID: 21300000, guid: 70d85c25cd8cecd459250ad6a18382af, type: 3}
-  quitBtnNormal: {fileID: 21300000, guid: 7836aeb9e01d56a4bbbd9c9d3d274ab8, type: 3}
-  quitBtnPress: {fileID: 21300000, guid: 98b80b804832cf04c8696222b35fc2ea, type: 3}
   sceneLoader: {fileID: 606449761}
   mainMenuGameObject: {fileID: 1000770310}
   settingsGameObject: {fileID: 782843907}

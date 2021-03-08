@@ -12,7 +12,6 @@ public class Player : MonoBehaviour
 
     // General Movement
     [SerializeField] [Range(1f, 10f)] private float moveSpeed = 6f;
-    [SerializeField] [Range(0f, .5f)] private float stepHeight = 0f;
 
     float velXSmoothing;
 
@@ -40,22 +39,19 @@ public class Player : MonoBehaviour
 
     #region GameLogic
 
+    [SerializeField] private SceneLoader sceneLoader;
+    [SerializeField] private SpriteRenderer sprite;
     [SerializeField] private Animator animator;
+    [SerializeField] private Gate gate = null;
 
     private List<GameObject> crystals = new List<GameObject>();
     private List<GameObject> crystalsInRange = new List<GameObject>();
 
-    [SerializeField] private Gate gate = null;
-
-    private bool shiftDown = false;
     private bool gateInRange = false;
-
+    private bool shiftDown = false;
     private bool dying = false;
 
     private int weightIndex = 2;
-    [SerializeField] private SceneLoader sceneLoader;
-    [SerializeField] private SpriteRenderer sprite;
-
 
     #endregion // __GAME_LOGIC__
 
@@ -94,7 +90,6 @@ public class Player : MonoBehaviour
 
         controllerAttributes.maxSlopeAscendAngle = maxClimbAngle;
         controllerAttributes.maxSlopeDecendAngle = maxDecendAngle;
-        controllerAttributes.stepHeight = stepHeight;
 
         controller.SetAttributes(controllerAttributes);
 
@@ -112,7 +107,6 @@ public class Player : MonoBehaviour
             return;
 
         #region Movement
-
 
         // COLLISIONS //
         if (controller.collisionState.below && desiredVelocity.y < 0f)
@@ -149,6 +143,28 @@ public class Player : MonoBehaviour
 
         #endregion // __MOVEMENT__ //
 
+    }
+
+    private void AssignNewWeightStatus(int index)
+    {
+        PlayerWeightState newState = weightStates[index];
+
+        jumpHeight = newState.jumpHeight;
+        timeToJumpApex = newState.timeToJumpApex;
+
+        gravity = -(2 * jumpHeight) / Mathf.Pow(timeToJumpApex, 2);
+        jumpVelocity = Mathf.Abs(gravity * timeToJumpApex);
+
+        if (index == 4)
+            sprite.color = new Color(43f / 255f, 136f / 255f, 255f / 255f);
+        else if (index == 3)
+            sprite.color = new Color(0f, 242f / 255f, 251f / 255f);
+        else if (index == 2)
+            sprite.color = new Color(0f, 255f / 255f, 0f, 255f);
+        else if (index == 1)
+            sprite.color = new Color(255f / 255f, 145f / 255f, 42f / 255f);
+        else if (index == 0)
+            sprite.color = new Color(255f / 255f, 55f / 255f, 10f / 255f);
     }
 
     public void OnInteract(InputValue value)
@@ -209,7 +225,6 @@ public class Player : MonoBehaviour
             GameObject crystal = gate.RemoveCrystal();
             if(crystal != null)
             {
-                Debug.Log("Adding");
                 crystals.Add(crystal);
 
                 if (crystal.tag == "blueCrystal")
@@ -223,28 +238,6 @@ public class Player : MonoBehaviour
 
         if (!shiftDown && gate.open && gateInRange)
             sceneLoader.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-    }
-
-    private void AssignNewWeightStatus(int index)
-    {
-        PlayerWeightState newState = weightStates[index];
-
-        jumpHeight = newState.jumpHeight;
-        timeToJumpApex = newState.timeToJumpApex;
-
-        gravity = -(2 * jumpHeight) / Mathf.Pow(timeToJumpApex, 2);
-        jumpVelocity = Mathf.Abs(gravity * timeToJumpApex);
-
-        if (index == 4)
-            sprite.color = new Color(43f / 255f, 136f / 255f, 255f / 255f, 255f / 255f);
-        if (index == 3)
-            sprite.color = new Color(0f / 255f, 242f / 255f, 251f / 255f, 255f / 255f);
-        if (index == 2)
-            sprite.color = new Color(0f / 255f, 255f / 255f, 0f / 255f, 255f / 255f);
-        if (index == 1)
-            sprite.color = new Color(255f / 255f, 145f / 255f, 42f / 255f, 255f / 255f);
-        if (index == 0)
-            sprite.color = new Color(255f / 255f, 55f / 255f, 10f / 255f, 255f / 255f);
     }
 
     public void OnJump(InputValue value)
