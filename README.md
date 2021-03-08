@@ -10,10 +10,10 @@
 #### ***Rated:*** TBA
 
 ## Controls
-* **AD**: Move
-* **Space**: Jump
-* **E**: Pick crystal / Insert crystal into the gate
-* **SHIFT + E**: Drop crystal / Pick crystal from the gate
+* **AD:** Move
+* **Space:** Jump
+* **E:** Pick crystal / Insert crystal into the gate
+* **SHIFT + E:** Drop crystal / Pick crystal from the gate
 
 ## Installing
 Follow the instructions below to install the unity project *Recommended unity version: 2019.4.21f1*:
